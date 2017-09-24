@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
 class BookLibrary extends Component{
-  
+
   render(){
 	const { allBooks, onShelfChange }=this.props
-   return( 
+   return(
     <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
@@ -16,21 +16,21 @@ class BookLibrary extends Component{
                 <BookShelf
      				title="Currently Reading"
      				books={ allBooks.currentlyReading }
-     				onShelfChnage={ onShelfChange }
+     				onShelfChange={ onShelfChange }
      			/>
-     
+
      			<BookShelf
      				title="Want To Read"
      				books={ allBooks.wantToRead }
-     				onShelfChnage={ onShelfChange }
+     				onShelfChange={ onShelfChange }
      			/>
-     
+
      			<BookShelf
      				title="Read"
      				books={ allBooks.read }
-     				onShelfChnage={ onShelfChange }
+     				onShelfChange={ onShelfChange }
      			/>
-  
+
               </div>
             </div>
             <div className="open-search">
@@ -38,7 +38,7 @@ class BookLibrary extends Component{
             </div>
           </div>
    )}
-  
+
 }
 
 export default BookLibrary

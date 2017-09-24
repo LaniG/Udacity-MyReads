@@ -7,7 +7,8 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
-    books: {
+    books: [],
+    bookStates: {
       currentlyReading: [],
       wantToRead: [],
       read: []
@@ -21,8 +22,8 @@ class BooksApp extends React.Component {
       const currentlyReading = books.filter(book =>  book.shelf === 'currentlyReading')
       const wantToRead = books.filter(book =>  book.shelf === 'wantToRead')
       const read = books.filter(book =>  book.shelf === 'read')
-      
-      this.setState({ books: { currentlyReading, wantToRead, read } })
+
+      this.setState({ books:books, bookStates: { currentlyReading, wantToRead, read } })
 
 
     })
@@ -30,8 +31,9 @@ class BooksApp extends React.Component {
 
 	shelfChange = (book, shelf) => {
       book.shelf = shelf
+      BooksAPI.update(book,shelf)
       this.setState({books: this.state.books.filter((b) => b.id !== book.id).concat([book]) })
-  	  BooksAPI.update(book,shelf)
+
     }
 
   render() {
@@ -42,12 +44,12 @@ class BooksApp extends React.Component {
               <Search />
            )} />
            <Route path='/' exact render={ () => (
-              <BookLibrary 
-                  allBooks={this.state.books}
+              <BookLibrary
+                  allBooks={this.state.bookStates}
 				  onShelfChange={this.shelfChange}
 			  />
            )} />
-            
+
       </div>
     )}
 }
